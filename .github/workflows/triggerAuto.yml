@@ -14,10 +14,9 @@ on:
 jobs:
   greet:
     name: deploying - ${{ github.event.inputs.revisionKey }}
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    env:
+      SOURCE_VERSION: ${{ github.event.inputs.revisionKey }} 
     steps: 
     - name: Step
       run: echo ${GITHUB_SHA::7}
