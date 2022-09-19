@@ -9,11 +9,11 @@ on:
     inputs:
       revisionKey:
         description: 'Commit hash(first 7 char):'
-        required: false
+        required: true
         default: "hakan"
 jobs:
   greet:
-    name: deploying - ${{ github.event.inputs.revisionKey || $GITHUB_SHA }}
+    name: deploying - ${{ github.event.inputs.revisionKey }}
     runs-on: ubuntu-latest
     env:
       SOURCE_VERSION: ${{ github.event.inputs.revisionKey }} 
