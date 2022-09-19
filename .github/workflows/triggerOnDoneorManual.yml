@@ -1,0 +1,35 @@
+name: triggerOnDoneorManual
+
+on:
+   workflow_run:
+      workflows: triggerOnPush
+      branches: main
+      types: completed
+   workflow_dispatch:
+    inputs:
+      revisionKey:
+        description: 'Commit hash(first 7 char):'
+        required: false
+        default: ${GITHUB_SHA::7}
+jobs:
+  greet:
+    name: deploying - ${{ github.event.inputs.revisionKey }}
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps: 
+    - name: Step
+      id: short-sha
+      with:
+       length: 7
+    - run: echo $SHA
+      env: 
+          SHA: ${{ steps.short-sha.outputs.sha }}
+    - name: Step
+      run: echo ${GITHUB_SHA::7}
+    - name: Set outputs
+      id: vars
+      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+    - name: Check outputs
+      run: echo ${{ steps.vars.outputs.sha_short }}
