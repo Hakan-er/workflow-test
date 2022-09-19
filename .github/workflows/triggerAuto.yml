@@ -10,10 +10,10 @@ on:
       revisionKey:
         description: 'Commit hash(first 7 char):'
         required: false
-        default: ${GITHUB_SHA::7}
+        default: "hakan"
 jobs:
   greet:
-    name: deploying - ${{ inputs.revisionKey }}
+    name: deploying - ${{ github.event.inputs.revisionKey }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
