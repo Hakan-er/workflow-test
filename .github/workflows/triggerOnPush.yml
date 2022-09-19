@@ -1,0 +1,10 @@
+name: triggerOnPush
+on:
+  push:
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Step 1
+      run: echo 'triggered'
