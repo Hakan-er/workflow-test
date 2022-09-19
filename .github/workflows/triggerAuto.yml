@@ -10,13 +10,14 @@ on:
       revisionKey:
         description: 'Commit hash(first 7 char):'
         required: false
-        default: "hakan"
 jobs:
   greet:
-    name: deploying - ${ "${{ github.event.inputs.revisionKey || github.sha}}"::7 }
+    name: deploying - ${{ github.event.inputs.revisionKey }} || ${GITHUB_SHA::7}
     runs-on: ubuntu-latest
     env:
-      SOURCE_VERSION: ${{ github.event.inputs.revisionKey }} 
+      SOURCE_VERSION: ${{ github.event.inputs.revisionKey }} || ${GITHUB_SHA::7} 
     steps: 
     - name: Step 2
       run: echo ${GITHUB_SHA::7}
+    - name: Step 3
+      run: echo $SOURCE_VERSION
