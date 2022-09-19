@@ -13,10 +13,10 @@ on:
         default: "hakan"
 jobs:
   greet:
-    name: deploying - ${{ github.event.inputs.revisionKey }}
+    name: deploying - ${{ github.event.inputs.revisionKey || $GITHUB_SHA }}
     runs-on: ubuntu-latest
     env:
       SOURCE_VERSION: ${{ github.event.inputs.revisionKey }} 
     steps: 
-    - name: Step
+    - name: Step 2
       run: echo ${GITHUB_SHA::7}
