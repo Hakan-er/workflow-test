@@ -1,4 +1,4 @@
-name: triggerOnDoneOrManual
+name: triggerAuto
 
 on:
    workflow_run:
@@ -20,16 +20,4 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps: 
     - name: Step
-      id: short-sha
-      with:
-       length: 7
-    - run: echo $SHA
-      env: 
-          SHA: ${{ steps.short-sha.outputs.sha }}
-    - name: Step
       run: echo ${GITHUB_SHA::7}
-    - name: Set outputs
-      id: vars
-      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-    - name: Check outputs
-      run: echo ${{ steps.vars.outputs.sha_short }}
