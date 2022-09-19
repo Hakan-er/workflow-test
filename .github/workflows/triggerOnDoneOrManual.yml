@@ -1,4 +1,4 @@
-name: triggerOnDoneorManual
+name: triggerOnDoneOrManual
 
 on:
    workflow_run:
