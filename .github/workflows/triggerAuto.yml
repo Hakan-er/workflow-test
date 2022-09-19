@@ -12,11 +12,14 @@ on:
         required: false
 jobs:
   greet:
-    name: deploying - ${{ github.event.inputs.revisionKey }} || ${GITHUB_SHA::7}
+    name: deploying - ${{ github.event.inputs.revisionKey || github.sha}}
     runs-on: ubuntu-latest
     env:
-      SOURCE_VERSION: ${{ github.event.inputs.revisionKey }} || ${GITHUB_SHA::7} 
+      SOURCE_VERSION: ${{ github.event.inputs.revisionKey }}
     steps: 
+    - name: Step 1
+      if : ${{ github.event.inputs.revisionKey == '' }}
+      run: echo "SOURCE_VERSION=${GITHUB_SHA::7} " >> $GITHUB_ENV
     - name: Step 2
       run: echo ${GITHUB_SHA::7}
     - name: Step 3
