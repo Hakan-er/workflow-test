@@ -13,7 +13,7 @@ on:
         default: ${GITHUB_SHA::7}
 jobs:
   greet:
-    name: deploying - ${{ github.event.inputs.revisionKey }}
+    name: deploying - ${{ inputs.revisionKey }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
